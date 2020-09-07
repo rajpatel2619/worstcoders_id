@@ -4,7 +4,13 @@ void main() {
   runApp(MaterialApp(home: WorstCard()));
 }
 
-class WorstCard extends StatelessWidget {
+class WorstCard extends StatefulWidget {
+  @override
+  _WorstCardState createState() => _WorstCardState();
+}
+
+class _WorstCardState extends State<WorstCard> {
+  int worstLevel = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +21,16 @@ class WorstCard extends StatelessWidget {
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            worstLevel += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
+        
+      ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 40, 30, 5),
         child: Column(
@@ -22,8 +38,8 @@ class WorstCard extends StatelessWidget {
           children: [
             Center(
               child: CircleAvatar(
-                backgroundImage: NetworkImage('https://i.pinimg.com/236x/28/e9/e1/28e9e1e7557717378f90ef80cdb50dc3.jpg'),
-                radius: 50,
+                backgroundImage: AssetImage('assets/hack.png'
+                 ), radius: 50,
               ),
             ),
             Divider(
@@ -63,7 +79,7 @@ class WorstCard extends StatelessWidget {
               height: 10.0,
             ),
             Text(
-              '8',
+              '$worstLevel',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 2.0,
